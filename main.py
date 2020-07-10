@@ -12,18 +12,18 @@ import shutil
 PATH_INPUT = os.path.normpath(os.path.expanduser("~/Desktop/gopro"))
 PATH_OUTPUT = os.path.normpath(os.path.expanduser("~/Desktop/Timelapse"))
 
+# 24 hour format
 START_TIME = 6
 STOP_TIME = 17
 
 # In minutes
-TIME_BETWEEN_SHOTS = 1
+TIME_BETWEEN_SHOTS = 7
 
-#! DON'T TOUCH!!
-COUNTER = 1
 
 def main():
     """Program will move photos from one directory to another."""
-    global COUNTER
+    # DON'T TOUCH!!
+    COUNTER = 1
     folder = os.listdir(PATH_INPUT)
     # goes through every folder in PATH directory
     for fol in folder:
@@ -43,6 +43,7 @@ def main():
                         # copies file to location specified in PATH_OUTPUT
                         shutil.copyfile(current_file, PATH_OUTPUT + "\\" + str(COUNTER) + ".JPG")
                         COUNTER += 1
+
 
 if __name__ == "__main__":
     main()
