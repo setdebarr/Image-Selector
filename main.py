@@ -30,21 +30,27 @@ def main():
     # goes through every folder in PATH directory
     for fol in folder:
         # creates a list of all files in curently selected folder
-        files = os.listdir(PATH_INPUT + '\\' + fol)
+        files = os.listdir(PATH_INPUT + "\\" + fol)
         with alive_bar(len(files), spinner="classic", bar="classic") as bar:
             # goes through every file in the currently selected folder
             for file in files:
                 # check to make sure the os being used is Windows
                 if platform.system() == "Windows":
-                    current_file = PATH_INPUT + '\\' + fol + '\\' + file
+                    current_file = PATH_INPUT + "\\" + fol + "\\" + file
                     # converts system time to struct_time for easy manipulation
                     creation = time.localtime(os.path.getmtime(current_file))
                     # narrows down to weekday files between specified times
-                    if (creation[3] >= START_TIME) and (creation[3] <= STOP_TIME) and (creation[6] <= 4):
+                    if (
+                        (creation[3] >= START_TIME)
+                        and (creation[3] <= STOP_TIME)
+                        and (creation[6] <= 4)
+                    ):
                         # narrows down to a file every 5 minutes
-                        if (creation[4] % TIME_BETWEEN_SHOTS == 0):
+                        if creation[4] % TIME_BETWEEN_SHOTS == 0:
                             # copies file to location specified in PATH_OUTPUT
-                            shutil.copyfile(current_file, PATH_OUTPUT + "\\" + str(COUNTER) + ".JPG")
+                            shutil.copyfile(
+                                current_file, PATH_OUTPUT + "\\" + str(COUNTER) + ".JPG"
+                            )
                             COUNTER += 1
                 bar()
 
