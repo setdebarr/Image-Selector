@@ -19,7 +19,7 @@ START_TIME = 6
 STOP_TIME = 17
 
 # In minutes
-TIME_BETWEEN_SHOTS = 7
+TIME_BETWEEN_SHOTS = 5
 
 
 def main():
